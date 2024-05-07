@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="mainpage.css"
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>webproject</title>
-</head>
-<body>
-    <div id="navbar">
-
-<h3 id="Login"><a href="login.php" style="text-decoration: none; color: black;">Login/Register</a></h3>
-<div class="dropdown">
-
-<h3 id="Courses">Courses</h3>
-<div class="dropdown-content">
-
-<a>Cybersecurity</a>
-<a>Google</a>
-<a>AIP</a>
-
-</div>
-</div>
-<h3 id="announcments"><a style="text-decoration: none; color: black;">announcments</a></h3>
-
-<h3 id="Events">Events</h3>
-
-
-
-
-
-    </div>
+<?php
+require_once "header.php";
+require_once "nav.php";
+?>
 <div id="Paragraphs">
     <h2 class="CCSIT KFU">CCSIT KFU</h2>
 
