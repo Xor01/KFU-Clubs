@@ -39,7 +39,6 @@ class Club
         $this->_data = $data->results();
         if ($data)
         {
-            
             return true;
         }
     }
@@ -66,35 +65,8 @@ class Club
         return (!empty($this->_data)) ? true : false;
     }
 
-    public function logout()
-    {
-        if (isset($_SESSION)) {    
-            $this->_db->delete('users_session', array('user_id', '=', $this->data()->uid));
-            Session::delete($this->_sessionName);
-            Cookie::delete($this->_cookieName);
-        }
-    }
-
     public function data()
     {
         return $this->_data;
-    }
-
-    public function isLoggedIn()
-    {
-        return $this->_isLoggedIn;
-    }
-
-    public function deleteMe()
-    {
-        if ($this->isLoggedIn())
-        {
-            $id = $this->data()->uid;
-        }
-
-        if (!$this->_db->delete('users', array('uid', '=', $id)))
-        {
-            throw new Exception('Unable to update the user.');
-        }
     }
 }
