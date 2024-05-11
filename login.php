@@ -5,6 +5,3 @@
 <?php require_once FRONTEND_PAGE . 'login.php'; ?>
 <?php require_once FRONTEND_INCLUDE . 'footer.php'; ?>
 <?php 
-if ($user->isLoggedIn()){
-    Redirect::to('index.php');
-}
