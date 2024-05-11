@@ -47,15 +47,15 @@ class Database
             {
                 foreach ($params as $param)
                 {
-                    $this->_query->bindvalue($x, $param);
+                    $this->_query->bindValue($x, $param); // Modified bindvalue to bindValue
                     $x++;
                 }
             }
 
             if ($this->_query->execute())
             {
-                $this->_results     = $this->_query->fetchAll(PDO::FETCH_OBJ);
-                $this->_count       = $this->_query->rowCount();
+                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                $this->_count = $this->_query->rowCount();
             }
             else
             {
