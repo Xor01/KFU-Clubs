@@ -1,7 +1,6 @@
-<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
     <a class="navbar-brand" href="index.php">
-        <img src="assets\university-svgrepo-com.svg" class="border-primary" style="width: 50px" />
+        <img src="app\frontend\assets\university-svgrepo-com.svg" class="border-primary" style="width: 50px" />
         KFU-Clubs
     </a>
     <button
@@ -17,19 +16,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <?php if (!Auth::is_logged_in()):?>
-                <li class="nav-item">
+            <?php if (!$user->isLoggedIn()):?>
+            <li class="nav-item">
                 <a class="nav-link" href="login.php">
                     Login
                     
                 </a>
             </li>
-            <?php endif?>
             <li class="nav-item">
                 <a class="nav-link" href=""
                 >DASHBOARD</a
                 >
             </li>
+            <?php endif?>
             <li class="nav-item">
                 <a class="nav-link" href="clubs.php">Clubs</a>
             </li>
@@ -43,7 +42,7 @@
             </li>
         </ul>
 
-        <?php if (Auth::is_logged_in()) :?>
+        <?php if ($user->isLoggedIn()):?>
             <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
                 <a
@@ -54,31 +53,19 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                 >
-                    name
+                <?= $user->data()->username;?>
                 </a>
                 <div
                     class="dropdown-menu dropdown-menu-end"
                     aria-labelledby="navbarDropdownMenuLink"
                 >
-                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="profile.php">Profile</a>
                     <a class="dropdown-item" href="#">Dashboard</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
+                <?php endif ?>
                 </div>
             </li>
         </ul>
-        <?php endif?>
     </div>
 </nav>
-
-<?php 
-
-$get_url = $_SERVER['REQUEST_URI'];
-
-
-?>
-
-
- <script>
-    $("#" + '<?php echo $get_url ?>').addClass('active');
- </script>

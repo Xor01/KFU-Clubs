@@ -1,4 +1,23 @@
-body, html {
+<?php ob_start();?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><?php appName(); ?></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Custom Assets -->
+  <link href="<?php echo FRONTEND_ASSET . 'css/profile.css'; ?>">
+  <script src="<?php echo FRONTEND_ASSET . 'css/profile.js'; ?>"></script>
+
+  <style>
+  .fakeimg {
+      height: 200px;
+      background: #aaa;
+  }
+  body, html {
     margin: 0;
     padding: 0;
     background-color: rgba(231, 231, 231, 0.842); 
@@ -122,3 +141,7 @@ margin-left: 70px;
     margin: 0 10px; /* Add margin between club items for better spacing */
     text-align: center;
 }
+
+  </style>
+</head>
+<body>
