@@ -5,23 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="467deaac-40c3-4ff6-a913-7f9357e0ef04" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/announcements.php" beforeDir="false" afterPath="$PROJECT_DIR$/announcements.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/university-svgrepo-com.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/user.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clubs.php" beforeDir="false" afterPath="$PROJECT_DIR$/clubs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/autoload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/database.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/events.php" beforeDir="false" afterPath="$PROJECT_DIR$/events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainpage.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nav.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/send_club_request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backend/classes/Club.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/backend/classes/Club.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/frontend/pages/clubs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/frontend/pages/clubs.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,20 +33,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/xampp/htdocs/school",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/school&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -76,7 +63,9 @@
       <option name="presentableId" value="Default" />
       <updated>1715095905167</updated>
       <workItem from="1715095906362" duration="27000" />
-      <workItem from="1715427803812" duration="778000" />
+      <workItem from="1715427803812" duration="1051000" />
+      <workItem from="1715530643991" duration="421000" />
+      <workItem from="1715531076971" duration="1317000" />
     </task>
     <servers />
   </component>

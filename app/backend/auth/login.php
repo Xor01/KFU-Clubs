@@ -26,6 +26,7 @@ if (Input::exists())
 
                 if ($login)
                 {
+                    Session::flash('login-success', 'Login Successful');
                     Redirect::to('index.php');
                 }
                 else
