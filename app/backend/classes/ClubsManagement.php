@@ -1,15 +1,14 @@
 <?php
 
-class Club
-{
+Class ClubsManagement {
     private $_db,
-            $_data;
+            $_data,
+            $_clubMembers;
 
     public function __construct($clubs = null)
     {
         $this->_db = Database::getInstance();
 
-       $this->findAll($clubs);
     }
 
     public function update($fields = array(), $id = null)
@@ -33,20 +32,20 @@ class Club
         }
     }
 
-    public function find($club = null)
+    public function isUserInClub($clubId, $userId)
     {
-        if ($club)
+        if ($clubId && $userId)
         {
-            $field  = (is_numeric($club)) ? 'clubID' : 'name';
+            $field  = (is_numeric($clubId)) ? 'clubID' : 'name';
 
-            $data = $this->_db->get('clubs', array($field, '=', $club));
-
+            $data = $this->_db->query("select * from clubMembers where clubID = ? and userID = ?", [$clubId, $userId]);
             if ($data->count())
             {
-                $this->_data = $data->first();
+                $this->_data = $data->results();
                 return true;
             }
         }
+        return false;
     }
 
     public function findAll($clubs = null)
@@ -56,6 +55,14 @@ class Club
         if ($data)
         {
             return true;
+        }
+    }
+
+    public function addUserToClubMembers($fields = null)
+    {
+        if (!$this->_db->insert('clubMembers', $fields))
+        {
+            throw new Exception("Unable to create the user.");
         }
     }
 

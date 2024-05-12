@@ -9,3 +9,14 @@ if(Session::exists('update-success'))
 {
   echo '<div class="alert alert-success"><strong></strong>' . Session::flash('update-success') . '</div>';
 }
+
+if(Session::exists('login-success'))
+{
+  echo '<div class="alert alert-success"><strong></strong>' . Session::flash('login-success') . '</div>';
+}
+
+
+if(Session::exists('general'))
+{
+  echo '<div class="alert alert-info text-center"><strong></strong>' . Session::flash('general') . '</div>';
+}

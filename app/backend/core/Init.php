@@ -10,6 +10,7 @@ require_once 'app/backend/auth/cookie.php';
 require_once 'app/backend/auth/user.php';
 require_once 'app/backend/auth/announcements.php';
 require_once 'app/backend/auth/clubs.php';
+require_once 'app/backend/auth/clubManagement.php';
 
 
 
