@@ -20,3 +20,9 @@ if(Session::exists('general'))
 {
   echo '<div class="alert alert-info text-center"><strong></strong>' . Session::flash('general') . '</div>';
 }
+
+
+if(Session::exists('unauthorized'))
+{
+  echo '<div class="alert alert-warning text-center"><strong></strong>' . Session::flash('unauthorized') . '</div>';
+}

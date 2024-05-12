@@ -48,6 +48,23 @@ Class ClubsManagement {
         return false;
     }
 
+
+    public function isUserActive($clubId, $userId)
+    {
+        if ($clubId && $userId)
+        {
+            $field  = (is_numeric($clubId)) ? 'clubID' : 'name';
+
+            $data = $this->_db->query("select * from clubMembers where clubID = ? and userID = ? and active = 1", [$clubId, $userId]);
+            if ($data->count())
+            {
+                $this->_data = $data->results();
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function findAll($clubs = null)
     {
         $data = $this->_db->query('Select * from clubs');
@@ -64,6 +81,64 @@ Class ClubsManagement {
         {
             throw new Exception("Unable to create the user.");
         }
+    }
+
+    public function isUerIsAnAdmin($userId)
+    {
+
+        $data = $this->_db->query("select * from clubMembers where roleID = 1 and userID = ?", [$userId]);
+        if ($data->count())
+        {
+            $this->_data = $data->results();
+            return true;
+        }
+        return false;
+    }
+
+
+    public function getClubsAUserIsAdminTo($userId)
+    {
+
+        $data = $this->_db->query("select * from clubMembers where roleID = 1 and userID = ?", [$userId]);
+        if ($data->count())
+        {
+            $this->_data = $data->results();
+            return true;
+        }
+        return false;
+    }
+
+
+    public function getClubApplications($clubId)
+    {
+
+        $data = $this->_db->query("SELECT * FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid WHERE active = 0 AND clubID = ?", [$clubId]);
+        if ($data->count())
+        {
+            $this->_data = $data->results();
+            return true;
+        }
+        return false;
+    }
+
+
+    public function acceptUser($clubId, $userID)
+    {
+
+        $result = $this->_db->updateWithSelectIdName("clubMembers", $userID, ['active'=> '1'], 'userID');
+        return $result;
+    }
+
+    public function rejectUser($clubId, $userId)
+    {
+
+        $data = $this->_db->query("Delete from clubMembers where clubID=? and userID=?", [$clubId, $userId]);
+        if ($data)
+        {
+            $this->_data = $data->results();
+            return true;
+        }
+        return false;
     }
 
     public function hasPermission($key)

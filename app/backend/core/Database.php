@@ -47,7 +47,7 @@ class Database
             {
                 foreach ($params as $param)
                 {
-                    $this->_query->bindValue($x, $param); // Modified bindvalue to bindValue
+                    $this->_query->bindValue($x, $param);
                     $x++;
                 }
             }
@@ -149,6 +149,32 @@ class Database
         }
 
         $sql = "UPDATE {$table} SET {$set} WHERE uid = {$id}";
+        if (!$this->query($sql, $fields)->error())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function updateWithSelectIdName($table, $id, $fields, $idName)
+    {
+        $set    = '';
+        $x      = 1;
+
+        foreach ($fields as $name => $value)
+        {
+            $set .= "{$name} = ?";
+
+            if ($x < count($fields))
+            {
+                $set .= ', ';
+            }
+
+            $x++;
+        }
+
+        $sql = "UPDATE {$table} SET {$set} WHERE {$idName} = {$id}";
         if (!$this->query($sql, $fields)->error())
         {
             return true;
