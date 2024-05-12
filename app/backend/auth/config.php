@@ -10,7 +10,7 @@ $GLOBALS['config'] = array(
         'host'          => '127.0.0.1',
         'username'      => 'root',
         'password'      => '',
-        'db_name'        => 'php_boilerplate'
+        'db_name'        => 'KFU_Clubs'
     ),
 
     'password' => array(

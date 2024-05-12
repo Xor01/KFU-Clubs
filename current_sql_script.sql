@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2024 at 11:12 PM
+-- Generation Time: May 12, 2024 at 10:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,10 +54,19 @@ INSERT INTO `announcements` (`announcementID`, `title`, `content`, `authorID`, `
 
 CREATE TABLE `clubmembers` (
   `clubMemberID` int(11) NOT NULL,
-  `clubID` int(11) DEFAULT NULL,
-  `userID` int(11) DEFAULT NULL,
-  `roleID` int(11) DEFAULT NULL
+  `clubID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `roleID` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `clubmembers`
+--
+
+INSERT INTO `clubmembers` (`clubMemberID`, `clubID`, `userID`, `roleID`, `active`) VALUES
+(1, 1, 21, 1, 1),
+(2, 2, 21, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -95,6 +104,23 @@ INSERT INTO `clubs` (`clubID`, `name`, `description`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `eventID` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `start_datetime` datetime NOT NULL,
+  `end_datetime` datetime DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `clubID` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `groups`
 --
 
@@ -122,6 +148,14 @@ CREATE TABLE `roles` (
   `roleID` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`roleID`, `name`) VALUES
+(1, 'admin'),
+(2, 'member');
 
 -- --------------------------------------------------------
 
@@ -193,6 +227,13 @@ ALTER TABLE `clubs`
   ADD PRIMARY KEY (`clubID`);
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`eventID`),
+  ADD KEY `clubID` (`clubID`);
+
+--
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
@@ -230,7 +271,7 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `clubmembers`
 --
 ALTER TABLE `clubmembers`
-  MODIFY `clubMemberID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `clubMemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `clubroles`
@@ -245,6 +286,12 @@ ALTER TABLE `clubs`
   MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
@@ -254,7 +301,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `roleID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `roleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -293,6 +340,12 @@ ALTER TABLE `clubmembers`
 ALTER TABLE `clubroles`
   ADD CONSTRAINT `clubroles_ibfk_1` FOREIGN KEY (`clubID`) REFERENCES `clubs` (`clubID`),
   ADD CONSTRAINT `clubroles_ibfk_2` FOREIGN KEY (`roleID`) REFERENCES `roles` (`roleID`);
+
+--
+-- Constraints for table `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`clubID`) REFERENCES `clubs` (`clubID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
