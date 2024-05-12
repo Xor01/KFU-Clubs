@@ -20,15 +20,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="login.php">
                     Login
-                    
                 </a>
             </li>
+            <?php elseif ($clubManagement->isUerIsAnAdmin($user->data()->uid)) :?>
             <li class="nav-item">
-                <a class="nav-link" href=""
+                <a class="nav-link" href="dashboard.php"
                 >DASHBOARD</a
                 >
             </li>
-            <?php endif?>
+            <?php endif ?>
             <li class="nav-item">
                 <a class="nav-link" href="clubs.php">Clubs</a>
             </li>
@@ -60,8 +60,11 @@
                     aria-labelledby="navbarDropdownMenuLink"
                 >
                     <a class="dropdown-item" href="profile.php">Profile</a>
-                    <a class="dropdown-item" href="#">Dashboard</a>
+                    <?php $result = $clubManagement->isUerIsAnAdmin($user->data()->uid);
+                    if ($result):?>
+                    <a class="dropdown-item" href="dashboard.php">Dashboard</a>
                     <div class="dropdown-divider"></div>
+                    <?php endif ?>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 <?php endif ?>
                 </div>
