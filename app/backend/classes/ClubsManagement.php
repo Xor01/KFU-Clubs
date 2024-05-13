@@ -36,7 +36,7 @@ Class ClubsManagement {
     {
         if ($clubId && $userId)
         {
-            $field  = (is_numeric($clubId)) ? 'clubID' : 'name';
+            $field  = (is_numeric($clubId)) ? 'clubID' : 'clubName';
 
             $data = $this->_db->query("select * from clubMembers where clubID = ? and userID = ?", [$clubId, $userId]);
             if ($data->count())
@@ -53,7 +53,7 @@ Class ClubsManagement {
     {
         if ($clubId && $userId)
         {
-            $field  = (is_numeric($clubId)) ? 'clubID' : 'name';
+            $field  = (is_numeric($clubId)) ? 'clubID' : 'clubName';
 
             $data = $this->_db->query("select * from clubMembers where clubID = ? and userID = ? and active = 1", [$clubId, $userId]);
             if ($data->count())
@@ -78,7 +78,7 @@ Class ClubsManagement {
 
     public function getClubName($clubId)
     {
-        $data = $this->_db->query('Select name from clubs where clubID = ?', [$clubId]);
+        $data = $this->_db->query('Select clubName from clubs where clubID = ?', [$clubId]);
         $this->_data = $data->results();
         if ($data)
         {
@@ -121,10 +121,12 @@ Class ClubsManagement {
     }
 
 
-    public function getClubApplications($clubId)
+    public function getClubApplications($userId)
     {
 
-        $data = $this->_db->query("SELECT * FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid WHERE active = 0 AND clubID = ?", [$clubId]);
+        $data = $this->_db->query(
+            "SELECT clubs.clubID, users.uid, clubs.clubName, users.college, users.bio, users.joined, users.name  FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid INNER JOIN clubs ON clubs.clubID = clubMembers.clubID  
+            WHERE active = 0 AND clubMembers.clubID IN (SELECT clubID FROM clubMembers WHERE userID=? AND roleID=1)", [$userId]);
         if ($data->count())
         {
             $this->_data = $data->results();

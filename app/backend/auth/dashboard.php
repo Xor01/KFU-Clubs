@@ -1,6 +1,7 @@
 <?php
 require_once 'app/backend/core/Init.php';
 if (!$user->isLoggedIn()){
+    Session::flash('unauthorized', 'You don not have permission to access that page.');
     Redirect::to('index.php');
 }
 
@@ -9,8 +10,7 @@ if (!$clubManagement->isUerIsAnAdmin($user->data()->uid)){
     Redirect::to('index.php');
 }
 
-$result = $clubManagement->getClubApplications($clubManagement->data()[0]->clubID);
-
+$result = $clubManagement->getClubApplications($user->data()->uid);
 
 // TODO: check if the admin is the same club admin
 

@@ -37,7 +37,7 @@ class Club
     {
         if ($club)
         {
-            $field  = (is_numeric($club)) ? 'clubID' : 'name';
+            $field  = (is_numeric($club)) ? 'clubID' : 'clubName';
 
             $data = $this->_db->get('clubs', array($field, '=', $club));
 

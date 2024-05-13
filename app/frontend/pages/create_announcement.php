@@ -9,7 +9,7 @@
                     <select name="selected_club" class="custom-select custom-select-lg mb-3">
                         <option>Select Club Name:</option>
                         <?php foreach ($clubManagement->data() as $clubInfo): ?>
-                        <option value="<?= $clubInfo->clubID?>"><?= $clubInfo->name ?></option>
+                        <option value="<?= $clubInfo->clubID?>"><?= $clubInfo->clubName ?></option>
                         <?php endforeach ?>
                     </select>
     		    

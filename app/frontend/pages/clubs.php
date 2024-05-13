@@ -12,7 +12,7 @@
                 <strong class="d-inline-block mb-2 text-success-emphasis"
                 >Club</strong
                 >
-                <h3 class="mb-0"><?=  $club->name?></h3>
+                <h3 class="mb-0"><?=  $club->clubName?></h3>
                 <div class="mb-1 text-body-secondary">Joined: <?= explode('-', explode(' ', $club->created_at)[0])[0]?></div>
                 <p class="mb-auto">
                     <?=$club->description?>
