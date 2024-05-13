@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2024 at 01:50 AM
+-- Generation Time: May 14, 2024 at 01:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,9 @@ CREATE TABLE `clubmembers` (
 
 INSERT INTO `clubmembers` (`clubMemberID`, `clubID`, `userID`, `roleID`, `active`) VALUES
 (1, 1, 21, 1, 1),
-(2, 2, 21, 2, 0);
+(2, 2, 21, 1, 1),
+(4, 1, 22, 2, 0),
+(5, 2, 22, 2, 0);
 
 --
 -- Indexes for dumped tables
@@ -64,7 +66,7 @@ ALTER TABLE `clubmembers`
 -- AUTO_INCREMENT for table `clubmembers`
 --
 ALTER TABLE `clubmembers`
-  MODIFY `clubMemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `clubMemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
