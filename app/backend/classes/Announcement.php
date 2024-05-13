@@ -9,7 +9,7 @@ class Announcement
     {
         
         $this->_db = Database::getInstance();
-        $this->find($announcement);
+        $this->findAll($announcement);
     }
 
 
@@ -17,18 +17,18 @@ class Announcement
     {
         if (!$this->_db->insert('announcements', $fields))
         {
-            throw new Exception("Unable to create the announcement.");
+            return false;
         }
+        return true;
     }
 
-    public function find($announcement)
+    public function findAll($announcement)
     {
 
-            $data = $this->_db->query('Select * from announcements');
+            $data = $this->_db->query('Select * from announcements order by created_at desc');
             $this->_data = $data->results();
             if ($data)
             {
-                
                 return true;
             }
         

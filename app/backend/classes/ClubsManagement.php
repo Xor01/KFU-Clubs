@@ -75,6 +75,18 @@ Class ClubsManagement {
         }
     }
 
+
+    public function getClubName($clubId)
+    {
+        $data = $this->_db->query('Select name from clubs where clubID = ?', [$clubId]);
+        $this->_data = $data->results();
+        if ($data)
+        {
+            return $this->_data;
+        }
+        return null;
+    }
+
     public function addUserToClubMembers($fields = null)
     {
         if (!$this->_db->insert('clubMembers', $fields))
@@ -99,7 +111,7 @@ Class ClubsManagement {
     public function getClubsAUserIsAdminTo($userId)
     {
 
-        $data = $this->_db->query("select * from clubMembers where roleID = 1 and userID = ?", [$userId]);
+        $data = $this->_db->query("select * from clubMembers Inner join clubs on clubMembers.clubID = clubs.clubID where roleID = 1 and userID = ?", [$userId]);
         if ($data->count())
         {
             $this->_data = $data->results();
@@ -135,8 +147,7 @@ Class ClubsManagement {
         $data = $this->_db->query("Delete from clubMembers where clubID=? and userID=?", [$clubId, $userId]);
         if ($data)
         {
-            $this->_data = $data->results();
-            return true;
+            return $this->_data = $data->first();
         }
         return false;
     }
