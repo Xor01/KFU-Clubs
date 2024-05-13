@@ -12,16 +12,22 @@ if (!$clubManagement->isUerIsAnAdmin($user->data()->uid)){
 
 $result = $clubManagement->getClubApplications($user->data()->uid);
 
-// TODO: check if the admin is the same club admin
+$userId = escape(Input::get('userId'));
+$clubId = escape(Input::get('clubId'));
 
-if (Input::get('userId') && Input::get('clubId') && !$clubManagement->isUserActive(escape(Input::get('clubId')), escape(Input::get('userId')))) {
+if ($userId && $clubId && !$clubManagement->isUserActive($clubId, $userId)) {
+
+    if (!$clubManagement->isUserIsAnAdminToThisClub($user->data()->uid, $clubId)) {
+        Session::flash('unauthorized', 'You don not have permission to perform this action.');
+        Redirect::to('index.php');
+    }
+    
     if (Input::get('status') == 'accept') {
-        $result = $clubManagement->acceptUser(escape(Input::get('clubId')), escape(Input::get('userId')));
+        $result = $clubManagement->acceptUser($clubId, $userId);
         Redirect::to('dashboard.php');
     }
     elseif (Input::get('status') == 'reject'){
-        $result = $clubManagement->rejectUser(escape(Input::get('clubId')), escape(Input::get('userId')));
-        var_dump($result);
+        $result = $clubManagement->rejectUser($clubId, $userId);
         Redirect::to('dashboard.php');
     }
     

@@ -107,6 +107,17 @@ Class ClubsManagement {
         return false;
     }
 
+    public function isUserIsAnAdminToThisClub($userId, $clubId)
+{
+    $data = $this->_db->query("SELECT userID FROM clubMembers WHERE roleID = 1 AND userID = ? AND clubID = ?", [$userId, $clubId]);
+    // Check if any rows were returned
+    if ($data->count() > 0)
+    {
+        return true;
+    }
+    return false;
+}
+
 
     public function getClubsAUserIsAdminTo($userId)
     {
@@ -136,10 +147,10 @@ Class ClubsManagement {
     }
 
 
-    public function acceptUser($clubId, $userID)
+    public function acceptUser($clubId, $userId)
     {
 
-        $result = $this->_db->updateWithSelectIdName("clubMembers", $userID, ['active'=> '1'], 'userID');
+        $result = $this->_db->query("UPDATE clubMembers SET active = 1 WHERE clubID=? and userID=?", [$clubId, $userId]);
         return $result;
     }
 
