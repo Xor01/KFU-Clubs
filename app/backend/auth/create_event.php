@@ -19,8 +19,8 @@ if (Input::get('event_title') && is_numeric(escape(Input::get('selected_club')))
     
     try {
         $result = $events->create(
-            ['title'=> escape(Input::get('event_title')),
-            'description'=> escape(Input::get('content')),
+            ['eventTitle'=> escape(Input::get('event_title')),
+            'description'=> escape(Input::get('event_description')),
             'start_datetime'=> date("Y-m-d\TH:i:s", strtotime(escape(Input::get('start_datetime')))),
             'end_datetime'=> date("Y-m-d\TH:i:s", strtotime(escape(Input::get('end_datetime')))),
             'location'=> escape(Input::get('event_location')),
