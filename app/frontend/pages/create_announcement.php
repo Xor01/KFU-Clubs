@@ -6,12 +6,15 @@
     		<h1>Create post</h1>
     		
     		<form action="create_announcement.php" method="POST">
-                    <select name="selected_club" class="custom-select custom-select-lg mb-3">
-                        <option>Select Club Name:</option>
-                        <?php foreach ($clubManagement->data() as $clubInfo): ?>
-                        <option value="<?= $clubInfo->clubID?>"><?= $clubInfo->clubName ?></option>
-                        <?php endforeach ?>
-                    </select>
+			<div class="col-sm-6 col-md-4">
+                <div class="form-floating"><select class="form-select" name="selected_club" required>
+                    <option disabled selected value="">Select Club</option>
+                    <?php foreach($clubManagement->data() as $clubData): ?>
+                    <option value="<?= $clubData->clubID?>"><?= $clubData->clubName ?></option>    
+                    <?php endforeach?>                
+                  </select><label for="selected_club">Select Club</label></div>
+              </div>
+              </div>
     		    
     		    <div class="form-group">
     		        <label for="title">Title <span class="require">*</span></label>

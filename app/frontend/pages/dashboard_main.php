@@ -29,9 +29,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="create_event.php">
               <span data-feather="shopping-cart"></span>
-              Products
+              Create Event
             </a>
           </li>
           <li class="nav-item">

@@ -1,21 +1,21 @@
 <?php
-class Announcement
+class Event
 {
     private $_db,
             $_data,
             $_sessionName;
 
-    public function __construct($announcement = null)
+    public function __construct($events = null)
     {
         
         $this->_db = Database::getInstance();
-        $this->findAll($announcement);
+        $this->findAll($events);
     }
 
 
     public function create($fields = array())
     {
-        if (!$this->_db->insert('announcements', $fields))
+        if (!$this->_db->insert('events', $fields))
         {
             return false;
         }
@@ -25,7 +25,7 @@ class Announcement
     public function findAll($announcement)
     {
 
-            $data = $this->_db->query('Select * from announcements order by created_at desc');
+            $data = $this->_db->query('Select * from events order by created_at desc');
             $this->_data = $data->results();
             if ($data)
             {
@@ -41,7 +41,7 @@ class Announcement
             $id = $this->data()->uid;
         }
 
-        if (!$this->_db->update('clubs', $id, $fields))
+        if (!$this->_db->update('events', $id, $fields))
         {
             throw new Exception('Unable to update the user.');
         }
