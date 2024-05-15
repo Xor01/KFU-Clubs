@@ -57,4 +57,23 @@ class Event
         return $this->_data;
     }
 
+    public function checkIfUserIsRegisterInEvent($userId, $eventId){
+        $data = $this->_db->query('SELECT userID FROM event_registrations WHERE userID = ? AND eventID = ?', [$userId, $eventId]); 
+            if ($data->count() == 1)
+            {
+                return true;
+            }
+            return false;
+    }
+
+    public function getRegistrationStatus($userId, $eventId){
+        $data = $this->_db->query('SELECT registration_status FROM event_registrations WHERE userID = ? AND eventID = ?', [$userId, $eventId]); 
+            if ($data->count() == 1)
+            {
+
+                return $data->results();
+            }
+            return [''];
+    }
+
 }

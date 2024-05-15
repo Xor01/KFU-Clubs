@@ -15,10 +15,36 @@
                 </p>
                 <div class="mb-1 text-body-secondary">Starts at: <?= $event_result->start_datetime ?></div>
                 <span class="mb-1 text-body-secondary">Ends at: <?= $event_result->end_datetime ?></span>
-                <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                <?php if (!$events->checkIfUserIsRegisterInEvent($user->data()->uid, $event_result->eventID)):?>
+                <a href="events.php?userId=<?= $user->data()->uid ?>&eventId=<?= $event_result->eventID ?>" class="icon-link gap-1 icon-link-hover stretched-link">
                 Register to Attend.
-                    <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                    
                 </a>
+                <?php else:?>
+                    <?php $registration_status = $events->getRegistrationStatus($user->data()->uid, $event_result->eventID);?>
+                    <?php 
+                        switch ($registration_status[0]->registration_status) {
+                            case 'pending':
+                                echo '<div class="badge text-bg-secondary rounded-pill">Pending Acceptance.</div>';
+                                break;
+                            
+                            case 'accepted':
+                                echo '<div class="badge text-bg-success rounded-pill">Accepted, welcome aboard.</div>';
+                                break;
+                            
+                            case 'rejected':
+                                echo '<div class="badge text-bg-danger rounded-pill">Rejected, sorry we will see you again.</div>';
+                                break;
+
+                            case 'withdraw':
+                                echo '<div class="badge text-bg-danger rounded-pill">You have Withdraw, you can register next time</div>';
+                                break;
+                            default:
+                                # code...
+                                break;
+                        }
+                    ?>
+                <?php endif?>
             </div>
         </div>
         <?php endforeach?>
