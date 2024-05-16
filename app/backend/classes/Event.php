@@ -66,6 +66,21 @@ class Event
             return false;
     }
 
+
+    public function getEventsApplications($userId)
+    {
+
+        $data = $this->_db->query(
+            "SELECT clubs.clubID, users.uid, clubs.clubName, users.college, users.bio, users.joined, users.name, events.eventID, events.eventTitle, event_registrations.registration_datetime, event_registrations.registration_status  FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid INNER JOIN clubs ON clubs.clubID = clubMembers.clubID INNER JOIN event_registrations ON event_registrations.clubID = clubs.clubID INNER JOIN events ON event_registrations.eventID = events.eventID
+            WHERE active = 1 AND clubMembers.clubID IN (SELECT clubID FROM clubMembers WHERE userID=? AND roleID=1)", [$userId]);
+        if ($data->count())
+        {
+            $this->_data = $data->results();
+            return true;
+        }
+        return false;
+    }
+
     public function getRegistrationStatus($userId, $eventId){
         $data = $this->_db->query('SELECT registration_status FROM event_registrations WHERE userID = ? AND eventID = ?', [$userId, $eventId]); 
             if ($data->count() == 1)
@@ -74,6 +89,18 @@ class Event
                 return $data->results();
             }
             return [''];
+    }
+
+
+    public function acceptUser($userId, $eventId){
+        $result = $this->_db->query("UPDATE event_registrations SET registration_status = 'accepted' WHERE userID=? and eventID=?", [$userId, $eventId]);
+        return $result;
+    }
+
+
+    public function rejectUser($userId, $eventId){
+        $result = $this->_db->query("UPDATE event_registrations SET registration_status = 'rejected' WHERE userID=? and eventID=?", [$userId, $eventId]);
+        return $result;
     }
 
 }
