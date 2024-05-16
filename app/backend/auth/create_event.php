@@ -17,6 +17,24 @@ if (!$result) {
 
 if (Input::get('event_title') && is_numeric(escape(Input::get('selected_club')))) {
     
+
+
+
+$current_datetime = date("Y-m-d\TH:i:s");
+$start_datetime = date("Y-m-d\TH:i:s", strtotime(escape(Input::get('start_datetime'))));
+$end_datetime = date("Y-m-d\TH:i:s", strtotime(escape(Input::get('end_datetime'))));
+
+if ($start_datetime < $current_datetime || $end_datetime < $current_datetime) {
+    Session::flash('danger', "Have you invent a time machine ?");
+    Redirect::to('create_event.php');
+}
+
+
+if ($end_datetime < $start_datetime) {
+        Session::flash('danger', "End Date time should be after start datetime");
+        Redirect::to('create_event.php');
+}
+
     try {
         $result = $events->create(
             ['eventTitle'=> escape(Input::get('event_title')),
