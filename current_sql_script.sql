@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2024 at 10:18 PM
+-- Generation Time: May 16, 2024 at 04:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,7 +73,7 @@ INSERT INTO `clubmembers` (`clubMemberID`, `clubID`, `userID`, `roleID`, `active
 (1, 1, 21, 1, 1),
 (2, 2, 21, 1, 1),
 (4, 1, 22, 2, 0),
-(5, 2, 22, 2, 0);
+(5, 2, 22, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +154,8 @@ CREATE TABLE `event_registrations` (
 --
 
 INSERT INTO `event_registrations` (`registrationID`, `clubID`, `eventID`, `userID`, `registration_datetime`, `registration_status`) VALUES
-(1, 1, 1, 21, '2024-05-15 19:07:17', 'pending');
+(1, 1, 1, 21, '2024-05-15 19:07:17', 'accepted'),
+(2, 1, 5, 22, '2024-05-16 13:19:29', 'withdraw');
 
 -- --------------------------------------------------------
 
@@ -280,9 +281,9 @@ ALTER TABLE `events`
 --
 ALTER TABLE `event_registrations`
   ADD PRIMARY KEY (`registrationID`),
+  ADD UNIQUE KEY `uc_user_event_unique` (`userID`,`eventID`),
   ADD KEY `clubID` (`clubID`),
-  ADD KEY `eventID` (`eventID`),
-  ADD KEY `userID` (`userID`);
+  ADD KEY `eventID` (`eventID`);
 
 --
 -- Indexes for table `groups`
@@ -346,7 +347,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `event_registrations`
 --
 ALTER TABLE `event_registrations`
-  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `groups`
