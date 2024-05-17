@@ -9,7 +9,7 @@ class Event
     {
         
         $this->_db = Database::getInstance();
-        $this->findAll($events);
+        $this->findAll();
     }
 
 
@@ -22,10 +22,22 @@ class Event
         return true;
     }
 
-    public function findAll($announcement)
+    public function findAll()
     {
 
             $data = $this->_db->query('Select * from events order by created_at desc');
+            $this->_data = $data->results();
+            if ($data)
+            {
+                return true;
+            }
+        
+    }
+
+    public function find($event_id)
+    {
+
+            $data = $this->_db->query('Select * from events where eventID=?', [$event_id]);
             $this->_data = $data->results();
             if ($data)
             {
@@ -100,6 +112,11 @@ class Event
 
     public function rejectUser($userId, $eventId){
         $result = $this->_db->query("UPDATE event_registrations SET registration_status = 'rejected' WHERE userID=? and eventID=?", [$userId, $eventId]);
+        return $result;
+    }
+
+    public function sendRegistration($clubId, $userId, $eventId){
+        $result = $this->_db->query("INSERT INTO event_registrations (clubID, eventID, userID) VALUES (?, ?, ?)", [$clubId,$eventId, $userId]);
         return $result;
     }
 
