@@ -13,14 +13,19 @@
                 >Club</strong
                 >
                 <h3 class="mb-0"><?=  $club->clubName?></h3>
-                <div class="mb-1 text-body-secondary">Joined: <?= explode('-', explode(' ', $club->created_at)[0])[0]?></div>
+                <div class="mb-1 text-body-secondary">Joined to KFU_Clubs In: <?= explode('-', explode(' ', $club->created_at)[0])[0]?></div>
                 <p class="mb-auto">
                     <?=$club->description?>
                 </p>
+                <?php if (!$clubManagement->isUserInClub($club->clubID, $user->data()->uid)):?>
                 <a href="send_club_request.php?club=<?= $club->clubID; ?>" class="icon-link gap-1 icon-link-hover stretched-link">
                     Request to join
                     <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
                 </a>
+                <?php else:?>
+                    <div class="badge text-bg-success rounded-pill">Congrats You are a member of this club.</div>
+                </a>
+                <?php endif?>
             </div>
         </div>
         <?php endforeach ?>
