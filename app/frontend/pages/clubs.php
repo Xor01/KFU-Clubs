@@ -17,7 +17,7 @@
                 <p class="mb-auto">
                     <?=$club->description?>
                 </p>
-                <?php echo $club->clubID; if (!$clubManagement->isUserInClub($club->clubID, $user->data()->uid)):?>
+                <?php if (!$clubManagement->isUserInClub($club->clubID, $user->data()->uid)):?>
                 <a href="send_club_request.php?club=<?= $club->clubID; ?>" class="icon-link gap-1 icon-link-hover stretched-link">
                     Request to join
                     <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
