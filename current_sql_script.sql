@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2024 at 04:31 PM
+-- Generation Time: May 18, 2024 at 03:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,7 +73,8 @@ INSERT INTO `clubmembers` (`clubMemberID`, `clubID`, `userID`, `roleID`, `active
 (1, 1, 21, 1, 1),
 (2, 2, 21, 1, 1),
 (4, 1, 22, 2, 0),
-(5, 2, 22, 2, 1);
+(5, 2, 22, 2, 1),
+(10, 30, 21, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,8 @@ CREATE TABLE `clubs` (
 
 INSERT INTO `clubs` (`clubID`, `clubName`, `description`, `created_at`) VALUES
 (1, 'AIP', 'The best place to learn about AI and Programming ', '2024-05-11 15:54:38'),
-(2, 'Cyber Security', 'The right place to you !', '2024-05-11 17:26:38');
+(2, 'Cyber Security', 'The right place to you !', '2024-05-11 17:26:38'),
+(30, 'Google Developer Club', 'we sucks', '2024-05-18 00:40:42');
 
 -- --------------------------------------------------------
 
@@ -132,7 +134,8 @@ CREATE TABLE `events` (
 
 INSERT INTO `events` (`eventID`, `clubID`, `eventTitle`, `description`, `start_datetime`, `end_datetime`, `location`, `created_by`, `created_at`) VALUES
 (1, 1, 'AI Bootcamp', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\n\n', '2024-05-15 19:31:48', '2024-05-16 19:31:48', 'CCSIT building 15', 21, '2024-05-14 16:32:48'),
-(5, 2, 'Cyber Security Fundamentals', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', '2024-05-14 21:41:00', '2024-05-15 21:42:00', 'CCSIT Main building', 21, '2024-05-14 18:43:15');
+(5, 2, 'Cyber Security Fundamentals', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', '2024-05-14 21:41:00', '2024-05-15 21:42:00', 'CCSIT Main building', 21, '2024-05-14 18:43:15'),
+(7, 1, 'Data Analysis Bootcamp', 'Hello worlds', '2024-05-22 01:29:00', '2024-05-22 01:29:00', 'CCSIT Main college', 21, '2024-05-17 22:29:51');
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,7 @@ CREATE TABLE `event_registrations` (
   `eventID` int(11) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
   `registration_datetime` timestamp NOT NULL DEFAULT current_timestamp(),
-  `registration_status` enum('pending','accepted','rejected','withdraw') NOT NULL DEFAULT 'accepted'
+  `registration_status` enum('pending','accepted','rejected','withdraw') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -154,8 +157,8 @@ CREATE TABLE `event_registrations` (
 --
 
 INSERT INTO `event_registrations` (`registrationID`, `clubID`, `eventID`, `userID`, `registration_datetime`, `registration_status`) VALUES
-(1, 1, 1, 21, '2024-05-15 19:07:17', 'accepted'),
-(2, 1, 5, 22, '2024-05-16 13:19:29', 'withdraw');
+(2, 1, 5, 22, '2024-05-16 13:19:29', 'withdraw'),
+(22, 2, 5, 21, '2024-05-17 22:13:47', 'pending');
 
 -- --------------------------------------------------------
 
@@ -323,7 +326,7 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `clubmembers`
 --
 ALTER TABLE `clubmembers`
-  MODIFY `clubMemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `clubMemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `clubroles`
@@ -335,19 +338,19 @@ ALTER TABLE `clubroles`
 -- AUTO_INCREMENT for table `clubs`
 --
 ALTER TABLE `clubs`
-  MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `event_registrations`
 --
 ALTER TABLE `event_registrations`
-  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `groups`
