@@ -4,11 +4,11 @@
           <thead>
             <tr>
               <th scope="col">User Id</th>
-              <th scope="col">Club Name</th>
-              <th scope="col">Name</th>
-              <th scope="col">Event ID</th>
+              <th scope="col">Host Club</th>
+              <th scope="col">Applicant Name</th>
+              <th scope="col">Event Name</th>
               <th scope="col">college</th>
-              <th scope="col">Biography</th>
+              <th scope="col">Applicant Biography</th>
               <th scope="col">Registration Date</th>
               <th scope="col">Registration Status</th>
               <th scope="col">Accept</th>
