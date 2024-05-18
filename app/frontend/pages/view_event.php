@@ -41,10 +41,6 @@ $events->find(escape(Input::get('eventId')));
 </div>
 
 <hr class="border border-2 opacity-50">
-<?php
-  $current_datetime = date("Y-m-d\TH:i:s");
-  $event_is_over =  $current_datetime >= $events->data()[0]->end_datetime ? true : false;
-?>
 <div class="row d-flex justify-content-center" style="  overflow: hidden;">
   <div class="col-md-8 col-lg-6">
     <div class="card shadow-0 border" style="background-color: #f0f2f5;">
