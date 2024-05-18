@@ -21,7 +21,7 @@ class Club
 
         if (!$this->_db->update('clubs', $id, $fields))
         {
-            throw new Exception('Unable to update the user.');
+            throw new Exception('Unable to update the club.');
         }
     }
 
@@ -29,8 +29,9 @@ class Club
     {
         if (!$this->_db->insert('clubs', $fields))
         {
-            throw new Exception("Unable to create the user.");
+            return false;
         }
+        return true;
     }
 
     public function find($club = null)

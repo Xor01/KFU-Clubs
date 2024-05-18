@@ -16,6 +16,14 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
+        <?php if($user->hasPermission('admin')):?>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="create_club.php">
+              <span data-feather="home"></span>
+              Create Club
+            </a>
+          </li>
+          <?php endif?>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="dashboard.php">
               <span data-feather="home"></span>

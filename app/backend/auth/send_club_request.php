@@ -8,7 +8,6 @@ if (!$user->isLoggedIn()){
 
 if (isset($_GET['club'])) {
     $clubs->find($_GET['club']);
-    $result = $clubManagement->isUerIsAnAdmin($user->data()->uid);
     
     
     $clubManagement->isUserInClub($clubs->data()->clubID, $user->data()->uid);

@@ -87,6 +87,17 @@ Class ClubsManagement {
         return null;
     }
 
+    public function getLatestClubId($clubName)
+    {
+        $data = $this->_db->query('Select clubID from clubs where clubName = ?  order by clubID desc limit 1', [$clubName]);
+        $this->_data = $data->results();
+        if ($data)
+        {
+            return $this->_data;
+        }
+        return null;
+    }
+
     public function addUserToClubMembers($fields = null)
     {
         if (!$this->_db->insert('clubMembers', $fields))
@@ -163,6 +174,18 @@ Class ClubsManagement {
             return $this->_data = $data->first();
         }
         return false;
+    }
+
+    public function makeUserAdmin($userId, $clubName)
+    {
+        $clubId = $this->getLatestClubId($clubName)[0]->clubID;
+        $result = $this->addUserToClubMembers([
+            'clubID' => $clubId,
+            'userID' => $userId,
+            'roleID' => 1,
+            'active' => 1,
+        ]);
+        return true;
     }
 
     public function hasPermission($key)
