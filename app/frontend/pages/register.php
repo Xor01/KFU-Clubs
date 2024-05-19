@@ -18,20 +18,21 @@
                 <br>
                 
                 <div class="form-floating">
-                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="firstname" required>
-                <label for="firstname">First Name</label>
-                </div>
-                <br>
-                
-                <div class="form-floating">
-                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="lastname" required>
-                <label for="lastname">Last Name</label>
-                </div>
-                <br>
-                
-                <div class="form-floating">
                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
                 <label for="email">Email address</label>
+                </div>
+                <br>
+
+
+                <div class="form-floating">
+                <input type="text" class="form-control" name="college" placeholder="Computer Science and Information Technology" required>
+                <label for="email">College Name</label>
+                </div>
+                <br>
+
+
+                <div class="form-group">
+                <textarea class="form-control" name="bio" rows="3" placeholder="Biography"></textarea>
                 </div>
                 <br>
 

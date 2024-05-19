@@ -28,6 +28,16 @@ if(Input::exists())
                 'min' => 6
             ),
 
+            'college' => array(
+                'required' => true,
+                'min' => 3,
+                'max' => 50
+            ),
+
+            'bio' => array(
+                'max' => 1000
+            ),
+
             'password_again' => array(
                 'required' => true,
                 'matches' => 'password'
@@ -43,6 +53,8 @@ if(Input::exists())
                     'password'  => Password::hash(Input::get('password')),
                     'name'      => Input::get('name'),
                     'joined'    => date('Y-m-d H:i:s'),
+                    'college'    => Input::get('college'),
+                    'bio'    => Input::get('bio'),
                     'groups'    => 1
                     ));
 

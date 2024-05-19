@@ -18,6 +18,16 @@ if (Input::exists())
                 'min'       => 2,
                 'max'       => 20
                 ),
+            'college'  => array(
+                'required'  => true,
+                'min'       => 3,
+                'max'       => 50
+                ),
+
+            'bio'  => array(
+                'max'       => 1000
+                ),
+
             'password'  => array(
                 'required'  => true,
                 'min'       => 6,
@@ -44,6 +54,8 @@ if (Input::exists())
                     $user->update(array(
                         'name'  => Input::get('name'),
                         'username'  => Input::get('username'),
+                        'college'  => Input::get('college'),
+                        'bio'  => Input::get('bio'),
                     ));
 
                      if ($validation->optional())
