@@ -24,7 +24,7 @@
             </li>
             <?php elseif ($clubManagement->isUerIsAnAdmin($user->data()->uid)) :?>
             <li class="nav-item">
-                <a class="nav-link" href="dashboard.php"
+                <a class="nav-link" href="applicant_management.php"
                 >DASHBOARD</a
                 >
             </li>
@@ -62,7 +62,7 @@
                     <a class="dropdown-item" href="profile.php">Profile</a>
                     <?php $result = $clubManagement->isUerIsAnAdmin($user->data()->uid);
                     if ($result):?>
-                    <a class="dropdown-item" href="dashboard.php">Dashboard</a>
+                    <a class="dropdown-item" href="applicant_management.php">Dashboard</a>
                     <div class="dropdown-divider"></div>
                     <?php endif ?>
                     <a class="dropdown-item" href="logout.php">Logout</a>

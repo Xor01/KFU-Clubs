@@ -14,11 +14,11 @@ if ($userId && $clubId && !$clubManagement->isUserActive($clubId, $userId)) {
     
     if (Input::get('status') == 'accept') {
         $result = $clubManagement->acceptUser($clubId, $userId);
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
     }
     elseif (Input::get('status') == 'reject'){
         $result = $clubManagement->rejectUser($clubId, $userId);
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
     }
     
 }

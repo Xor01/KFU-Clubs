@@ -34,7 +34,7 @@
     		        <button type="submit" class="btn btn-outline-success">
     		            Create
     		        </button>
-    		        <a href="dashboard.php" class="btn btn-outline-danger">Cancel</a>
+    		        <a href="applicant_management.php" class="btn btn-outline-danger">Cancel</a>
                     
     		    </div>
     		    

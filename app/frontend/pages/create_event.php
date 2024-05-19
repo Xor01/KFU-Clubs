@@ -39,7 +39,7 @@
               <div class="col-12 gy-6">
                 <div class="row g-3 justify-content-center">
                     <div class="col-auto"><button class="btn btn-outline-success px-5 px-sm-15" type="submit">Create Project</button></div>
-                  <div class="col-auto"><a href="dashboard.php" class="btn btn-outline-danger px-5">Cancel</a></div>
+                  <div class="col-auto"><a href="applicant_management.php" class="btn btn-outline-danger px-5">Cancel</a></div>
                 </div>
               </div>
             </form>

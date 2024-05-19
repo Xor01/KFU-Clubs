@@ -26,8 +26,8 @@ if (Input::get('title') && is_numeric(escape(Input::get('selected_club')))) {
         );
     } catch (\Throwable $th) {
         Session::flash('danger', "An error has occurred, please contact support for more information.");
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
     }
         Session::flash('general', "Announce has been published.");
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
 }

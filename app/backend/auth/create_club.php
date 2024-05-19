@@ -12,11 +12,11 @@ if ($club_name && $club_description) {
     if ($result) {
         $res = $clubManagement->makeUserAdmin($user->data()->uid, $club_name);
         Session::flash('general', 'Club has been created.');
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
     }
     else{
         Session::flash('danger', 'Sorry the club was not created, contact with support.');
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
 
     }
 }

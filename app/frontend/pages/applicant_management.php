@@ -23,8 +23,8 @@
               <td><?= $user->college?></td>
               <td><?= $user->bio?></td>
               <td><?= explode(' ', $user->joined)[0]?></td>
-              <td><a class="btn btn-outline-success" href="dashboard.php?userId=<?=$user->uid?>&clubId=<?=$user->clubID?>&status=accept" role="button">Accept</a></td>
-              <td><a class="btn btn-outline-danger" href="dashboard.php?userId=<?=$user->uid?>&clubId=<?=$user->clubID?>&status=reject" role="button">Reject</a></td>
+              <td><a class="btn btn-outline-success" href="applicant_management.php?userId=<?=$user->uid?>&clubId=<?=$user->clubID?>&status=accept" role="button">Accept</a></td>
+              <td><a class="btn btn-outline-danger" href="applicant_management.php?userId=<?=$user->uid?>&clubId=<?=$user->clubID?>&status=reject" role="button">Reject</a></td>
             </tr>
             <?php endforeach ?>
             <?php endif?>

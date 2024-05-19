@@ -48,8 +48,8 @@ if ($end_datetime < $start_datetime) {
     } catch (\Throwable $th) {
         var_dump($th);
         Session::flash('danger', "An error has occurred, please contact support for more information.");
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
     }
         Session::flash('general', "Event has been published.");
-        Redirect::to('dashboard.php');
+        Redirect::to('applicant_management.php');
 }
