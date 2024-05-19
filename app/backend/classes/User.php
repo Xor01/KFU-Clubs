@@ -72,6 +72,21 @@ class User
         }
     }
 
+
+    
+    public function checkEqual($questionId, $answer, $username)
+    {
+
+        $data = $this->_db->query('SELECT username FROM users WHERE username = ? AND security_questionID  = ? AND security_question_answer = ?', [$username, $questionId, $answer]); 
+        if ($data->count() == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+
+
     public function login($username = null, $password = null, $remember = false)
     {
         if (! $username && ! $password && $this->exists())

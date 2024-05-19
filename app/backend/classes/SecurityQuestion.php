@@ -22,6 +22,7 @@ class SecurityQuestion
         return true;
     }
 
+
     public function findAll()
     {
 

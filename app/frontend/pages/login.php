@@ -17,9 +17,12 @@
                 <br>
                 <button class="btn btn-primary w-100 py-2" type="submit" name="submit">Sign in</button>
                 <hr>
-                <a href="register.php"><input type="button" action="register.php" class="btn btn-secondary w-100 py-2" value="Don't Have account ? Register instead"></input></a>
+                <div class="d-flex justify-content-between">
+                    <a href="register.php" class="btn btn-secondary me-2 w-50">Don't Have account? Register instead</a>
+                    <a href="reset_password.php" class="btn btn-outline-secondary ms-2 w-50">Forgot your password? Click to reset.</a>
+                </div>
                 <input type="hidden" name="csrf_token" value="<?php echo Token::generate(); ?>">
-
+            </div>
             </form>
         </main>
     </div>
