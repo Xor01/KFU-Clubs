@@ -21,8 +21,6 @@ if (Input::get('action') == 'register') {
         }
         
         $result = $events->getRegistrationStatus($user_id, $event_id);
-        var_dump($result);
-        echo $result[0]->registration_status;
         if (!$result[0]) {
             $result = $events->sendRegistration($club_id, $user_id, $event_id);
             if ($result) {
@@ -41,4 +39,30 @@ if (Input::get('action') == 'register') {
         Redirect::to('events.php');
     }
     
+}
+else{
+    if (Input::get('comment')) {
+        if (!$clubManagement->isUserActive($club_id, $user_id)){
+            Session::flash('general', 'Only Members can register in this event.');
+            Redirect::to('events.php');
+        }
+        
+        $result = $events->getRegistrationStatus($user_id, $event_id);
+        if ($result[0] && ($result[0]->registration_status== 'accepted')) {
+            $comments->create(
+                [
+                    "eventID" => $event_id,
+                    "userID" => $user_id,
+                    "comment" => escape(Input::get('comment')),
+                    "likes" => 0,
+                ]
+            );
+            Session::flash('general', 'Successfully published a comment');
+            Redirect::to("view_event.php?userId=$user_id&eventId=$event_id&clubId=$club_id");
+        }
+        else{
+            Session::flash('danger', 'Only accepted members for this event can comment on this event, your registration: ' . $result[0]->registration_status);
+            Redirect::to("view_event.php?userId=$user_id&eventId=$event_id&clubId=$club_id");
+        }
+    }
 }
