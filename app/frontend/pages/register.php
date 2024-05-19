@@ -1,3 +1,7 @@
+<?php
+echo Input::get('questionID');
+echo "hello world";
+?>
 <div class="container-sm">
     <div class="d-flex justify-content-center  align-items-center py-4">
         
@@ -45,6 +49,22 @@
                 <div class="form-floating">
                 <input type="password" class="form-control" id="password_again" name="password_again" placeholder="Retype Password" required>
                 <label for="password">Password Verification</label>
+                </div>
+                
+                <br>
+                <div class="form-floating">
+                    <select class="form-select" aria-label="Default select example" name="security_questionID" required>
+                    <option selected disabled value="">Select Security Question</option>
+                    <?php foreach($security_questions->findAll() as $question):?>
+                    <option value="<?=$question->questionID?>"><?=$question->question?></option>
+                    <?php endforeach ?>
+                    </select>
+                </div>
+
+                <br>
+                <div class="form-floating">
+                <input type="text" class="form-control" name="security_question_answer" placeholder="Answer to your question" required>
+                <label for="question">Security Question Answer</label>
                 </div>
                 
                 <br>

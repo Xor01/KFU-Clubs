@@ -40,8 +40,19 @@ if(Input::exists())
 
             'password_again' => array(
                 'required' => true,
-                'matches' => 'password'
+                'match' => 'password'
+            ),
+            
+            'security_questionID' => array(
+                'required' => true,
+                'max' => 100
+            ),
+
+            'security_question_answer' => array(
+                'required' => true,
+                'min' => 3
             )
+            
         ));
 
         if ($validate->passed())
@@ -55,7 +66,9 @@ if(Input::exists())
                     'joined'    => date('Y-m-d H:i:s'),
                     'college'    => Input::get('college'),
                     'bio'    => Input::get('bio'),
-                    'groups'    => 1
+                    'security_questionID'    => Input::get('security_questionID'),
+                    'security_question_answer'    => Input::get('security_question_answer'),
+                    'groups'    => 1,
                     ));
 
                 Session::flash('register-success', 'Thanks for registering! You can login now.');

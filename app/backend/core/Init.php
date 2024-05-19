@@ -12,6 +12,7 @@ require_once 'app/backend/auth/announcements.php';
 require_once 'app/backend/auth/clubs.php';
 require_once 'app/backend/auth/clubManagement.php';
 require_once 'app/backend/auth/events.php';
+require_once 'app/backend/auth/security_question.php';
 
 
 
