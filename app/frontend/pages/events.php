@@ -16,10 +16,7 @@
                 <div class="mb-1 text-body-secondary">Starts at: <?= $event_result->start_datetime ?></div>
                 <span class="mb-1 text-body-secondary">Ends at: <?= $event_result->end_datetime ?></span>
                 <?php if (!$events->checkIfUserIsRegisterInEvent($user->data()->uid, $event_result->eventID)):?>
-                <a href="view_event.php?userId=<?= $user->data()->uid ?>&eventId=<?= $event_result->eventID ?>" class="icon-link gap-1 icon-link-hover stretched-link">
-                Register to Attend.
-                    
-                </a>
+
                 <?php else:?>
                     <?php $registration_status = $events->getRegistrationStatus($user->data()->uid, $event_result->eventID);?>
                     <?php 
@@ -45,6 +42,9 @@
                         }
                     ?>
                 <?php endif?>
+                <a href="view_event.php?userId=<?= $user->data()->uid ?>&eventId=<?= $event_result->eventID ?>" class="icon-link gap-1 icon-link-hover stretched-link">
+                Register to Attend, or see event info
+                </a>
             </div>
         </div>
         <?php endforeach?>
