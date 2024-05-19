@@ -4,12 +4,12 @@ class Hash
 {
     public static function make($string)
     {
-        return hash(Config::get('hash/algo_name'), $string . Hash::salt());
+        return hash(Config::get('hash/algo_name'), $string);
     }
 
     public static function salt()
     {
-        $saltLength = Config::get('hash/salt'); // Assuming config returns the desired length
+        $saltLength = Config::get('hash/salt');
         return random_bytes($saltLength);
     }
 
