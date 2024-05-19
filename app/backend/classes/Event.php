@@ -83,7 +83,7 @@ class Event
     {
 
         $data = $this->_db->query(
-            "SELECT clubs.clubID, users.uid, clubs.clubName, users.college, users.bio, users.joined, users.name, events.eventID, events.eventTitle, event_registrations.registration_datetime, event_registrations.registration_status  FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid INNER JOIN clubs ON clubs.clubID = clubMembers.clubID INNER JOIN event_registrations ON event_registrations.clubID = clubs.clubID INNER JOIN events ON event_registrations.eventID = events.eventID
+            "SELECT clubs.clubID, users.uid, clubs.clubName, users.college, users.bio, users.joined, users.name, events.eventID, events.eventTitle, event_registrations.registration_datetime, event_registrations.registration_status  FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid INNER JOIN clubs ON clubs.clubID = clubMembers.clubID INNER JOIN event_registrations ON event_registrations.clubID = clubs.clubID AND event_registrations.userID = users.uid INNER JOIN events ON event_registrations.eventID = events.eventID
             WHERE active = 1 AND clubMembers.clubID IN (SELECT clubID FROM clubMembers WHERE userID=? AND roleID=1)", [$userId]);
         if ($data->count())
         {
@@ -97,7 +97,6 @@ class Event
         $data = $this->_db->query('SELECT registration_status FROM event_registrations WHERE userID = ? AND eventID = ?', [$userId, $eventId]); 
             if ($data->count() == 1)
             {
-
                 return $data->results();
             }
             return [''];

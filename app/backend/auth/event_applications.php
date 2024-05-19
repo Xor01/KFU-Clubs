@@ -12,7 +12,6 @@ if ($userId && $eventId && $clubManagement->isUserInClub($clubId, $userId)) {
         Session::flash('unauthorized', 'You don not have permission to perform this action.');
         Redirect::to('index.php');
     }
-    echo "hello";
     if (Input::get('status') == 'accept') {
         $result = $events->acceptUser($userId, $eventId);
         Redirect::to('event_applications.php');
