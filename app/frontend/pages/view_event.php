@@ -5,7 +5,7 @@ if (!escape(Input::get('eventId'))) {
 $events->find(escape(Input::get('eventId')));
 ?>
 <?php
-  $current_datetime = date("Y-m-d\TH:i:s");
+  $current_datetime = date("Y-m-d H:i:s");
   $event_is_over =  $current_datetime >= $events->data()[0]->end_datetime ? true : false;
 ?>
 <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
