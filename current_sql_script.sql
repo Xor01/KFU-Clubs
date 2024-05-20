@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2024 at 03:18 PM
+-- Generation Time: May 20, 2024 at 12:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -113,6 +113,27 @@ INSERT INTO `clubs` (`clubID`, `clubName`, `description`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comment_likes`
+--
+
+CREATE TABLE `comment_likes` (
+  `likeID` int(11) NOT NULL,
+  `commentID` int(11) DEFAULT NULL,
+  `userID` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comment_likes`
+--
+
+INSERT INTO `comment_likes` (`likeID`, `commentID`, `userID`, `created_at`) VALUES
+(1, 1, 21, '2024-05-20 10:01:52'),
+(2, 1, 22, '2024-05-20 10:05:36');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `events`
 --
 
@@ -140,6 +161,27 @@ INSERT INTO `events` (`eventID`, `clubID`, `eventTitle`, `description`, `start_d
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event_comments`
+--
+
+CREATE TABLE `event_comments` (
+  `commentID` int(11) NOT NULL,
+  `eventID` int(11) DEFAULT NULL,
+  `userID` int(11) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event_comments`
+--
+
+INSERT INTO `event_comments` (`commentID`, `eventID`, `userID`, `comment`, `created_at`) VALUES
+(1, 5, 21, 'Thank You for the event', '2024-05-20 10:01:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `event_registrations`
 --
 
@@ -158,7 +200,7 @@ CREATE TABLE `event_registrations` (
 
 INSERT INTO `event_registrations` (`registrationID`, `clubID`, `eventID`, `userID`, `registration_datetime`, `registration_status`) VALUES
 (2, 1, 5, 22, '2024-05-16 13:19:29', 'withdraw'),
-(22, 2, 5, 21, '2024-05-17 22:13:47', 'pending');
+(22, 2, 5, 21, '2024-05-17 22:13:47', 'accepted');
 
 -- --------------------------------------------------------
 
@@ -202,6 +244,25 @@ INSERT INTO `roles` (`roleID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `security_questions`
+--
+
+CREATE TABLE `security_questions` (
+  `questionID` int(11) NOT NULL,
+  `question` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `security_questions`
+--
+
+INSERT INTO `security_questions` (`questionID`, `question`) VALUES
+(1, 'What is your favorite sport ?'),
+(2, 'What is your football team sport ?');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -213,16 +274,18 @@ CREATE TABLE `users` (
   `joined` datetime NOT NULL,
   `groups` int(11) NOT NULL,
   `college` text DEFAULT NULL,
-  `bio` text DEFAULT NULL
+  `bio` text DEFAULT NULL,
+  `security_questionID` int(11) DEFAULT NULL,
+  `security_question_answer` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `username`, `password`, `name`, `joined`, `groups`, `college`, `bio`) VALUES
-(21, 'admin', '$2y$10$RCx5jZAuLVjImmnwGZB0A.WOJMeIfi4GvjKugAlPaVpD9U82GG2Ka', 'Mohammed', '2024-05-11 15:22:15', 2, 'Computer Science', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n'),
-(22, 'lol', '$2y$10$dA3Hn8KrGEQ4cYHhxu7NR.7JcNsqVPDxYDAnY3L.GEU2ajb56z0oi', 'lol', '2024-05-13 00:47:53', 1, 'Computer Science', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n');
+INSERT INTO `users` (`uid`, `username`, `password`, `name`, `joined`, `groups`, `college`, `bio`, `security_questionID`, `security_question_answer`) VALUES
+(21, 'admin', '$2y$10$RCx5jZAuLVjImmnwGZB0A.WOJMeIfi4GvjKugAlPaVpD9U82GG2Ka', 'Mohammed', '2024-05-11 15:22:15', 2, 'Computer Science', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 1, 'football'),
+(22, 'lol', '$2y$10$hlGHlink10n.cjic8toHH.nhzuxT8Lxr/6PETLB8jupfAErUdZEEW', 'lol', '2024-05-13 00:47:53', 1, 'Computer Science', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 2, 'MC');
 
 -- --------------------------------------------------------
 
@@ -272,12 +335,28 @@ ALTER TABLE `clubs`
   ADD PRIMARY KEY (`clubID`);
 
 --
+-- Indexes for table `comment_likes`
+--
+ALTER TABLE `comment_likes`
+  ADD PRIMARY KEY (`likeID`),
+  ADD UNIQUE KEY `unique_user_comment` (`commentID`,`userID`),
+  ADD KEY `userID` (`userID`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
   ADD PRIMARY KEY (`eventID`),
   ADD KEY `clubID` (`clubID`),
   ADD KEY `created_by` (`created_by`);
+
+--
+-- Indexes for table `event_comments`
+--
+ALTER TABLE `event_comments`
+  ADD PRIMARY KEY (`commentID`),
+  ADD KEY `eventID` (`eventID`),
+  ADD KEY `userID` (`userID`);
 
 --
 -- Indexes for table `event_registrations`
@@ -299,6 +378,12 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`roleID`);
+
+--
+-- Indexes for table `security_questions`
+--
+ALTER TABLE `security_questions`
+  ADD PRIMARY KEY (`questionID`);
 
 --
 -- Indexes for table `users`
@@ -341,10 +426,22 @@ ALTER TABLE `clubs`
   MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT for table `comment_likes`
+--
+ALTER TABLE `comment_likes`
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
   MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `event_comments`
+--
+ALTER TABLE `event_comments`
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `event_registrations`
@@ -363,6 +460,12 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `roles`
   MODIFY `roleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `security_questions`
+--
+ALTER TABLE `security_questions`
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -403,11 +506,25 @@ ALTER TABLE `clubroles`
   ADD CONSTRAINT `clubroles_ibfk_2` FOREIGN KEY (`roleID`) REFERENCES `roles` (`roleID`);
 
 --
+-- Constraints for table `comment_likes`
+--
+ALTER TABLE `comment_likes`
+  ADD CONSTRAINT `comment_likes_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `event_comments` (`commentID`),
+  ADD CONSTRAINT `comment_likes_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`uid`);
+
+--
 -- Constraints for table `events`
 --
 ALTER TABLE `events`
   ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`clubID`) REFERENCES `clubs` (`clubID`),
   ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`);
+
+--
+-- Constraints for table `event_comments`
+--
+ALTER TABLE `event_comments`
+  ADD CONSTRAINT `event_comments_ibfk_1` FOREIGN KEY (`eventID`) REFERENCES `events` (`eventID`),
+  ADD CONSTRAINT `event_comments_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`uid`);
 
 --
 -- Constraints for table `event_registrations`
