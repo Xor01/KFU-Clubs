@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2024 at 12:31 PM
+-- Generation Time: May 20, 2024 at 11:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,9 +44,6 @@ CREATE TABLE `announcements` (
 --
 
 INSERT INTO `announcements` (`announcementID`, `title`, `content`, `authorID`, `clubID`, `created_at`, `updated_at`, `expiration_date`, `category`) VALUES
-(1, 'Test', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat voluptatem repellendus adipisci consequatur id aperiam ducimus cumque officia asperiores tempore alias aut, voluptate a, atque soluta. Architecto rerum reiciendis commodi?\r\n\r\n', 21, 1, '2024-05-11 18:00:56', '2024-05-11 18:00:56', NULL, NULL),
-(2, 'test', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 21, 1, '2024-05-13 16:22:33', '2024-05-13 16:22:33', NULL, NULL),
-(5, 'f', 'f', 21, 1, '2024-05-13 16:32:04', '2024-05-13 16:32:04', NULL, NULL),
 (10, 'A new announcement', 'Content', 21, 1, '2024-05-13 16:37:30', '2024-05-13 16:37:30', NULL, NULL),
 (11, 'Welcome to the Cyber Security club', 'Welcome to the Cyber Security club!!!', 21, 2, '2024-05-13 16:58:40', '2024-05-13 16:58:40', NULL, NULL),
 (12, 'test', 'one two three', 21, 1, '2024-05-14 17:28:46', '2024-05-14 17:28:46', NULL, NULL);
@@ -72,8 +69,8 @@ CREATE TABLE `clubmembers` (
 INSERT INTO `clubmembers` (`clubMemberID`, `clubID`, `userID`, `roleID`, `active`) VALUES
 (1, 1, 21, 1, 1),
 (2, 2, 21, 1, 1),
-(4, 1, 22, 2, 0),
-(5, 2, 22, 2, 1),
+(4, 1, 22, 1, 0),
+(5, 2, 22, 1, 1),
 (10, 30, 21, 1, 1);
 
 -- --------------------------------------------------------
@@ -128,8 +125,8 @@ CREATE TABLE `comment_likes` (
 --
 
 INSERT INTO `comment_likes` (`likeID`, `commentID`, `userID`, `created_at`) VALUES
-(1, 1, 21, '2024-05-20 10:01:52'),
-(2, 1, 22, '2024-05-20 10:05:36');
+(2, 1, 22, '2024-05-20 10:05:36'),
+(3, 1, 21, '2024-05-20 16:21:25');
 
 -- --------------------------------------------------------
 
@@ -156,7 +153,10 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`eventID`, `clubID`, `eventTitle`, `description`, `start_datetime`, `end_datetime`, `location`, `created_by`, `created_at`) VALUES
 (1, 1, 'AI Bootcamp', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\n\n', '2024-05-15 19:31:48', '2024-05-16 19:31:48', 'CCSIT building 15', 21, '2024-05-14 16:32:48'),
 (5, 2, 'Cyber Security Fundamentals', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', '2024-05-14 21:41:00', '2024-05-15 21:42:00', 'CCSIT Main building', 21, '2024-05-14 18:43:15'),
-(7, 1, 'Data Analysis Bootcamp', 'Hello worlds', '2024-05-22 01:29:00', '2024-05-22 01:29:00', 'CCSIT Main college', 21, '2024-05-17 22:29:51');
+(7, 1, 'Data Analysis Bootcamp', 'Hello worlds', '2024-05-22 01:29:00', '2024-05-22 01:29:00', 'CCSIT Main college', 21, '2024-05-17 22:29:51'),
+(8, 2, 'conflict test_1', 'Conflict Test_1', '2024-05-21 14:30:00', '2024-05-21 16:30:00', 'CCSIT', 21, '2024-05-20 14:35:43'),
+(9, 2, 'conflict test_2', 'Conflict Test_2', '2024-05-21 14:30:00', '2024-05-21 16:30:00', 'CCSIT', 21, '2024-05-20 14:36:59'),
+(10, 30, 'Introduction to Google AI Course', 'Google Map location: https://maps.app.goo.gl/zQNrDy2dA19dwGzY6', '2024-05-25 19:02:00', '2024-05-25 21:02:00', 'CCSIT main building', 21, '2024-05-20 16:03:36');
 
 -- --------------------------------------------------------
 
@@ -200,7 +200,9 @@ CREATE TABLE `event_registrations` (
 
 INSERT INTO `event_registrations` (`registrationID`, `clubID`, `eventID`, `userID`, `registration_datetime`, `registration_status`) VALUES
 (2, 1, 5, 22, '2024-05-16 13:19:29', 'withdraw'),
-(22, 2, 5, 21, '2024-05-17 22:13:47', 'accepted');
+(22, 2, 5, 21, '2024-05-17 22:13:47', 'accepted'),
+(26, 30, 10, 21, '2024-05-20 16:17:52', 'accepted'),
+(27, 2, 8, 21, '2024-05-20 16:20:54', 'pending');
 
 -- --------------------------------------------------------
 
@@ -429,13 +431,13 @@ ALTER TABLE `clubs`
 -- AUTO_INCREMENT for table `comment_likes`
 --
 ALTER TABLE `comment_likes`
-  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `event_comments`
@@ -447,7 +449,7 @@ ALTER TABLE `event_comments`
 -- AUTO_INCREMENT for table `event_registrations`
 --
 ALTER TABLE `event_registrations`
-  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `groups`
