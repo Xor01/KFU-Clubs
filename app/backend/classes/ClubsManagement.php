@@ -74,7 +74,7 @@ Class ClubsManagement {
 
     public function findAllInClub($clubId)
     {
-        $data = $this->_db->query('SELECT * FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid INNER JOIN clubs ON clubs.clubID = clubMembers.clubID INNER JOIN roles ON roles.roleID = clubMembers.roleID WHERE clubMembers.clubID = ?', [$clubId]);
+        $data = $this->_db->query('SELECT * FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid INNER JOIN clubs ON clubs.clubID = clubMembers.clubID INNER JOIN roles ON roles.roleID = clubMembers.roleID WHERE clubMembers.clubID = ? AND clubMembers.active=1', [$clubId]);
         $this->_data = $data->results();
         if ($data)
         {
