@@ -196,15 +196,9 @@ Class ClubsManagement {
     }
 
 
-    public function changePermission($userID, $clubID, $roleID){
-
-        $data = $this->_db->query('UPDATE clubMembers SET roleID=? WHERE userID=? AND clubID=?', [$roleID, $userID, $clubId]);
-        $this->_data = $data->results();
-        if ($data)
-        {
-            return $this->_data;
-        }
-        return null;
+    public function changePermission($roleID, $userID, $clubID){
+        $result = $this->_db->query("UPDATE clubMembers SET roleID = ? WHERE clubID=? and userID=? ", [$roleID, $clubID, $userID]);
+        return !($result == null);
     }
 
     public function hasPermission($key)

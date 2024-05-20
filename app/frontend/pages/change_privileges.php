@@ -50,10 +50,12 @@
                                 <td><?= $user->bio?></td>
                                 <td><?= explode(' ', $user->joined)[0]?></td>
                                 <td>
+                                    <input type="hidden" name="clubID" value="<?= escape(Input::get('selected_club')) ?>">
+                                    <input type="hidden" name="userID" value="<?= $user->uid ?>">
                                     <select style="min-width: 200px;" class="form-select" aria-label="Default select example" name="roleID">
-                                        <option selected disabled value="">Permission</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Standard User</option>
+                                        <option disabled value="">Choose Role</option>
+                                        <option <?php if($user->roleID == '1'){echo "selected";} ?> value="1">Admin</option>
+                                        <option <?php if($user->roleID == '2'){echo "selected";} ?> value="2">Standard User</option>
                                     </select>
                                 </td>
                             </tr>
