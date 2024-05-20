@@ -25,7 +25,7 @@ $start_datetime = date("Y-m-d\TH:i:s", strtotime(escape(Input::get('start_dateti
 $end_datetime = date("Y-m-d\TH:i:s", strtotime(escape(Input::get('end_datetime'))));
 
 if ($start_datetime < $current_datetime || $end_datetime < $current_datetime) {
-    Session::flash('danger', "Have you invent a time machine ?");
+    Session::flash('danger', "Have you invented a time machine?");
     Redirect::to('create_event.php');
 }
 
