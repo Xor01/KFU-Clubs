@@ -1,6 +1,5 @@
 <?php
 echo Input::get('questionID');
-echo "hello world";
 ?>
 <div class="container-sm">
     <div class="d-flex justify-content-center  align-items-center py-4">

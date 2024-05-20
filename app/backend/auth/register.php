@@ -83,7 +83,7 @@ if(Input::exists())
         {
             foreach ($validate->errors() as $error)
             {
-                echo '<div class="alert alert-danger"><strong></strong>' . cleaner($error) . '</div>';
+                echo '<div class="alert alert-danger text-center"><strong></strong>' . cleaner($error) . '</div>';
             }
         }
     }
