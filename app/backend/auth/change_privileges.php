@@ -2,7 +2,7 @@
 
 if (!$user->hasPermission('admin')) {
     Session::flash('danger', 'You do not have permission to access this page');
-    Redirect::to('index.php');
+    Redirect::to('applicant_management.php');
 }
 
 

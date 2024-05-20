@@ -201,22 +201,38 @@ Class ClubsManagement {
         return !($result == null);
     }
 
-    public function hasPermission($key)
-    {
-        $group = $this->_db->get('groups', array('gid', '=', $this->data()->groups));
 
-        if  ($group->count())
-        {
-            $permissions = json_decode($group->first()->permissions, true);
-
-            if ($permissions[$key] == true)
-            {
-                return true;
-            }
-        }
-
-        return false;
+    public function checkTimeConflict($userID, $newEventStart, $newEventEnd, $thisEventId) {
+        $result = $this->_db->query(
+            "SELECT 1
+             FROM event_registrations er 
+             JOIN events e ON er.eventID = e.eventID
+             WHERE er.userID = ? 
+             AND (
+                 (? BETWEEN e.start_datetime AND e.end_datetime) 
+                 OR 
+                 (? BETWEEN e.start_datetime AND e.end_datetime) 
+                 OR 
+                 (e.start_datetime BETWEEN ? AND ?) 
+                 OR 
+                 (e.end_datetime BETWEEN ? AND ?)
+             )
+             AND e.eventID != ? AND registration_status NOT IN ('rejected', 'withdraw')" 
+             ,
+            [
+                $userID, 
+                $newEventStart, 
+                $newEventEnd, 
+                $newEventStart, 
+                $newEventEnd, 
+                $newEventStart, 
+                $newEventEnd,
+                $thisEventId
+            ]
+        );
+        return $result->count();
     }
+
 
     public function exists()
     {

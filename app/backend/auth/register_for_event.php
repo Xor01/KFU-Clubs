@@ -19,7 +19,13 @@ if (Input::get('action') == 'register') {
             Session::flash('general', 'Only Members can register in this event.');
             Redirect::to('events.php');
         }
-        
+
+        $event_info = $events->find($event_id);
+         $conflict_result = ($clubManagement->checkTimeConflict($user_id, escape($events->data()[0]->start_datetime), escape($events->data()[0]->end_datetime), $event_id));
+        if ($conflict_result) {
+            Session::flash('unauthorized', 'Sorry their is a conflict with other event registration you cannot register to this event');
+            Redirect::to("view_event.php?userId=$user_id&eventId=$event_id&clubId=$club_id");
+        }
         $result = $events->getRegistrationStatus($user_id, $event_id);
         if (!$result[0]) {
             $result = $events->sendRegistration($club_id, $user_id, $event_id);
