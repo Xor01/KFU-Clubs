@@ -2,17 +2,17 @@
 
 if(Session::exists('register-success'))
 {
-  echo '<div class="alert alert-success"><strong></strong>' . Session::flash('register-success') . '<a href="login.php"> Login Here</a></div>';
+  echo '<div class="alert alert-success text-center"><strong></strong>' . Session::flash('register-success') . '<a href="login.php"> Login Here</a></div>';
 }
 
 if(Session::exists('update-success'))
 {
-  echo '<div class="alert alert-success"><strong></strong>' . Session::flash('update-success') . '</div>';
+  echo '<div class="alert alert-success text-center"><strong></strong>' . Session::flash('update-success') . '</div>';
 }
 
 if(Session::exists('login-success'))
 {
-  echo '<div class="alert alert-success"><strong></strong>' . Session::flash('login-success') . '</div>';
+  echo '<div class="alert alert-success text-center"><strong></strong>' . Session::flash('login-success') . '</div>';
 }
 
 
