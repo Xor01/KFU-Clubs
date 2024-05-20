@@ -23,6 +23,13 @@ if(Input::exists())
                 'unique' => 'users'
             ),
 
+            'email' => array(
+                'required' => true,
+                'min' => 5,
+                'max' => 50,
+                'unique' => 'users'
+            ),
+
             'password' => array(
                 'required' => true,
                 'min' => 6
@@ -61,6 +68,7 @@ if(Input::exists())
             {
                 $user->create(array(
                     'username'  => Input::get('username'),
+                    'email'  => Input::get('email'),
                     'password'  => Password::hash(Input::get('password')),
                     'name'      => Input::get('name'),
                     'joined'    => date('Y-m-d H:i:s'),

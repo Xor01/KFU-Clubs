@@ -18,6 +18,14 @@ if (Input::exists())
                 'min'       => 2,
                 'max'       => 20
                 ),
+
+            'email' => array(
+                'required' => true,
+                'min' => 5,
+                'max' => 50,
+                'unique' => 'users'
+            ),
+
             'college'  => array(
                 'required'  => true,
                 'min'       => 3,
@@ -33,6 +41,7 @@ if (Input::exists())
                 'min'       => 6,
                 'verify'     => 'users'
                 ),
+                
             'new_password'  => array(
                 'optional'  => true,
                 'min'       => 6,
@@ -54,6 +63,7 @@ if (Input::exists())
                     $user->update(array(
                         'name'  => Input::get('name'),
                         'username'  => Input::get('username'),
+                        'email'  => Input::get('email'),
                         'college'  => Input::get('college'),
                         'bio'  => Input::get('bio'),
                     ));

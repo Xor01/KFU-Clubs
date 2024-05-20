@@ -12,6 +12,11 @@
     </div>
 
     <div class="form-group">
+      <label for="email">Email :</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo escape($user->data()->email); ?>">
+    </div>
+
+    <div class="form-group">
       <label for="college">College :</label>
       <input type="text" class="form-control" placeholder="Enter College Name" name="college" value="<?php echo escape($user->data()->college); ?>">
     </div>

@@ -21,7 +21,7 @@ echo Input::get('questionID');
                 <br>
                 
                 <div class="form-floating">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
                 <label for="email">Email address</label>
                 </div>
                 <br>
