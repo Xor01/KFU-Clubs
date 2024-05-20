@@ -44,6 +44,13 @@
               Events Applications
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="change_privileges.php">
+              <span data-feather="users"></span>
+              Edit Privileges
+            </a>
+          </li>
         
     </nav>
 

@@ -13,10 +13,6 @@ Class ClubsManagement {
 
     public function update($fields = array(), $id = null)
     {
-        if (!$id && $this->isLoggedIn())
-        {
-            $id = $this->data()->uid;
-        }
 
         if (!$this->_db->update('clubs', $id, $fields))
         {
@@ -68,6 +64,17 @@ Class ClubsManagement {
     public function findAll($clubs = null)
     {
         $data = $this->_db->query('Select * from clubs');
+        $this->_data = $data->results();
+        if ($data)
+        {
+            return true;
+        }
+    }
+
+
+    public function findAllInClub($clubId)
+    {
+        $data = $this->_db->query('SELECT * FROM clubMembers INNER JOIN users ON clubMembers.userID = users.uid INNER JOIN clubs ON clubs.clubID = clubMembers.clubID INNER JOIN roles ON roles.roleID = clubMembers.roleID WHERE clubMembers.clubID = ?', [$clubId]);
         $this->_data = $data->results();
         if ($data)
         {
@@ -186,6 +193,18 @@ Class ClubsManagement {
             'active' => 1,
         ]);
         return true;
+    }
+
+
+    public function changePermission($userID, $clubID, $roleID){
+
+        $data = $this->_db->query('UPDATE clubMembers SET roleID=? WHERE userID=? AND clubID=?', [$roleID, $userID, $clubId]);
+        $this->_data = $data->results();
+        if ($data)
+        {
+            return $this->_data;
+        }
+        return null;
     }
 
     public function hasPermission($key)

@@ -53,7 +53,7 @@ else if (Input::get('action') == 'comment'){
                 "eventID" => $event_id,
                 "userID" => $user_id,
                 "comment" => escape(Input::get('comment')),
-                "likes" => 0,
+ 
             ]
         );
         Session::flash('general', 'Successfully published a comment');

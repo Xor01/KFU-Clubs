@@ -3,7 +3,7 @@
 	    
 	    <div class="col-md-8 col-md-offset-2">
 	        
-    		<h1>Create post</h1>
+    		<h1>Create Announcement</h1>
     		
     		<form action="create_announcement.php" method="POST">
 			<div class="col-sm-6 col-md-4">
