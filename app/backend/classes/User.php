@@ -139,7 +139,7 @@ class User
         {
             $permissions = json_decode($group->first()->permissions, true);
 
-            if ($permissions[$key] == true)
+            if (isset($permissions[$key]) && $permissions[$key] == true)
             {
                 return true;
             }
