@@ -1,7 +1,4 @@
 <p align="center">
-  <img src="https://img.icons8.com/?size=512&id=55494&format=png" width="20%" alt="KFU-CLUBS-logo">
-</p>
-<p align="center">
     <h1 align="center">KFU-CLUBS</h1>
 </p>
 <p align="center">
@@ -274,25 +271,12 @@ Build the project from source:
 ❯ cd KFU-Clubs
 ```
 
-3. Install the required dependencies:
-```sh
-❯ composer install
-```
-
 ###  Usage
 
 To run the project, execute the following command:
 
 ```sh
 ❯ php main.php
-```
-
-###  Tests
-
-Execute the test suite using the following command:
-
-```sh
-❯ vendor/bin/phpunit
 ```
 
 ##  Contributing
