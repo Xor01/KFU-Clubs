@@ -258,7 +258,7 @@ KFU-Clubs is a versatile web application designed to streamline event management
 
 ###  Prerequisites
 
-**PHP**: `version x.y.z`
+**PHP**: `version 8.3`
 
 ###  Installation
 
